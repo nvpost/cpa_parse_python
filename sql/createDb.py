@@ -27,5 +27,22 @@ def createCategory():
     cursor.execute(sql)
     db.commit()
 
+def createProducts():
+    db = pymysql.connect(host="localhost", user="root", passwd="mysql", db=db_name)
+    cursor = db.cursor()
+    sql = """CREATE TABLE IF NOT EXISTS Products(
+    id INT PRIMARY KEY NOT NULL auto_increment,
+    category_id INT,
+    product_id INT,
+    name TEXT,
+    description TEXT,
+    url TEXT,
+    vendor TEXT,
+    oldprice TEXT,
+    price INT)"""
+    cursor.execute(sql)
+    db.commit()
+
 createDb()
 createCategory()
+createProducts()
