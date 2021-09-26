@@ -3,6 +3,9 @@ import xml.etree.ElementTree as ET
 import pymysql
 import getCategory
 import getProducts
+import getImg
+import os
+
 
 from sql import sql
 
@@ -15,4 +18,6 @@ cursor = db.cursor()
 
 # getCategory.get_gategory(root_node, db)
 # getProducts.get_products(root_node, db)
+
+getImg.get_img(root_node, db)
 

@@ -43,6 +43,17 @@ def createProducts():
     cursor.execute(sql)
     db.commit()
 
+def createImg():
+    db = pymysql.connect(host="localhost", user="root", passwd="mysql", db=db_name)
+    cursor = db.cursor()
+    sql = """CREATE TABLE IF NOT EXISTS img(
+    id INT PRIMARY KEY NOT NULL auto_increment,
+    product_id INT,
+    src TEXT)"""
+    cursor.execute(sql)
+    db.commit()
+
 createDb()
 createCategory()
 createProducts()
+createImg()

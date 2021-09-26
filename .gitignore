@@ -3,4 +3,4 @@ venv/
 __pycache__/
 sql/__pycache__/
 xml.xml
-
+img/
