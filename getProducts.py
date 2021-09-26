@@ -5,7 +5,11 @@ def get_products(root_node, db):
         category_id = offer.find('categoryId').text
 
         name = offer.find('name').text
-        description = offer.find('description').text if offer.find('description') else " "
+
+        try:
+            description = offer.find('description').text
+        except:
+            description = ""
 
         oldprice = offer.find('oldprice').text if offer.find('oldprice') else " "
 
@@ -23,5 +27,6 @@ def get_products(root_node, db):
         query = """INSERT INTO products(category_id, product_id, name, description, url, vendor, oldprice, price)
         values(%s, %s, %s, %s, %s, %s, %s, %s)
         """
+        cursor = db.cursor()
         cursor.executemany(query,productsArr)
         db.commit()
