@@ -13,7 +13,7 @@ def get_gategory(root_node, db):
 
     print(categoryInsertArr)
 
-    query = """INSERT INTO category(category_id, parent_id, category)
+    query = """INSERT INTO category(id, parent_id, category)
     values(%s, %s, %s)
     """
     cursor.executemany(query,categoryInsertArr)

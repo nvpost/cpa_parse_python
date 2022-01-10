@@ -1,1 +1,1 @@
-db_name = 'mydata'
+db_name = 'dacha_depot'

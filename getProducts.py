@@ -11,20 +11,21 @@ def get_products(root_node, db):
         except:
             description = ""
 
+
         oldprice = offer.find('oldprice').text if offer.find('oldprice') else " "
 
         price = offer.find('price').text
         url = offer.find('url').text
-        vendor = offer.find('vendor').text
+        vendor = offer.find('vendor').text if  offer.find('vendor') else " "
         picturesNodes = offer.findall('picture') if offer.findall('picture') else " "
 
         pictures = list(map(lambda p:p.text, picturesNodes))
 
         productsArr.append(
-            (category_id, product_id, name, description, url, vendor, oldprice, price)
+            (product_id, category_id, name, description, url, vendor, oldprice, price)
         )
 
-        query = """INSERT INTO products(category_id, product_id, name, description, url, vendor, oldprice, price)
+        query = """INSERT INTO products(id, category_id, name, description, url, vendor, oldprice, price)
         values(%s, %s, %s, %s, %s, %s, %s, %s)
         """
         cursor = db.cursor()
