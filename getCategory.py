@@ -1,3 +1,5 @@
+import transliter
+
 def get_gategory(root_node, db):
     cursor = db.cursor()
     categoryInsertArr = []
@@ -9,12 +11,14 @@ def get_gategory(root_node, db):
 
         text = category.text
 
-        categoryInsertArr.append((id, parentId, text))
+        pretyUrl = transliter.transliter(text)
+
+        categoryInsertArr.append((id, parentId, text, pretyUrl))
 
     print(categoryInsertArr)
 
-    query = """INSERT INTO category(id, parent_id, category)
-    values(%s, %s, %s)
+    query = """INSERT INTO category(id, parent_id, category, prety_url)
+    values(%s, %s, %s, %s)
     """
     cursor.executemany(query,categoryInsertArr)
     db.commit()

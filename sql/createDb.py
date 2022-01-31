@@ -2,7 +2,7 @@ import pymysql
 import sql
 
 db = pymysql.connect(host="localhost",user="root",passwd="mysql")
-db_name = sql.dacha_depot
+db_name = sql.db_name
 
 cursor = db.cursor()
 

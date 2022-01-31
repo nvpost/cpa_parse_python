@@ -29,8 +29,19 @@ needle_max_side = 800
 def resize_img(pictures, product_id, product_name, db):
     n = 0
     for url in pictures:
-        r = requests.get(url)
+
         ext = url.split('.')[-1]
+
+        tail = "" if n==0 else "_"+str(n)
+        filename = transliter(product_name)+tail+"."+ext
+        output_url = dir+"/"+ filename
+
+        if os.path.isfile(output_url):
+            print('Файл существует ', output_url)
+            n = n + 1
+            continue
+
+        r = requests.get(url)
 
         try:
             original_image = Image.open(BytesIO(r.content))
@@ -57,20 +68,21 @@ def resize_img(pictures, product_id, product_name, db):
         except:
             print('не удалось ресайзнуть ', original_image)
             continue
-        tail = "" if n==0 else "_"+str(n)
-        filename = transliter(product_name)+tail+"."+ext
-        output_url = dir+"/"+ filename
+
         print(product_id, output_url)
 
         try:
             resized_image.save(output_url)
+            n = n + 1
+            insertTOSQL(product_id, filename, db)
+            if n>2:
+                break
 
         except:
             print('не удалось сохранить ', output_url)
             continue
 
-        n = n + 1
-        insertTOSQL(product_id, filename, db)
+
 
 
 def insertTOSQL(product_id, src, db):
