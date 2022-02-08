@@ -11,13 +11,13 @@ def get_gategory(root_node, db):
 
         text = category.text
 
-        pretyUrl = transliter.transliter(text)
+        prettyUrl = transliter.transliter(text)
 
-        categoryInsertArr.append((id, parentId, text, pretyUrl))
+        categoryInsertArr.append((id, parentId, text, prettyUrl))
 
     print(categoryInsertArr)
 
-    query = """INSERT INTO category(id, parent_id, category, prety_url)
+    query = """INSERT INTO category(id, parent_id, category, pretty_url)
     values(%s, %s, %s, %s)
     """
     cursor.executemany(query,categoryInsertArr)

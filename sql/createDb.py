@@ -22,7 +22,8 @@ def createCategory():
     sql = """CREATE TABLE IF NOT EXISTS Category(
     id INT PRIMARY KEY NOT NULL,
     parent_id INT,
-    category TEXT)"""
+    category TEXT,
+    pretty_url TEXT)"""
     cursor.execute(sql)
     db.commit()
 
@@ -37,7 +38,8 @@ def createProducts():
     url TEXT,
     vendor TEXT,
     oldprice TEXT,
-    price INT)"""
+    price INT,
+    pretty_url TEXT)"""
     cursor.execute(sql)
     db.commit()
 

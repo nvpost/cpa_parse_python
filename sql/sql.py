@@ -1,1 +1,1 @@
-db_name = 'noz'
+db_name = 'tourist'
