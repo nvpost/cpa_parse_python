@@ -18,7 +18,8 @@ def get_products(root_node, db):
 
         price = offer.find('price').text
         url = offer.find('url').text
-        vendor = offer.find('vendor').text if  offer.find('vendor') else " "
+        vendor = offer.find('vendor').text
+            # if offer.find('vendor') else " "
         picturesNodes = offer.findall('picture') if offer.findall('picture') else " "
 
         prettyUrl = transliter.transliter(name)
@@ -28,7 +29,6 @@ def get_products(root_node, db):
         productsArr.append(
             (product_id, category_id, name, description, url, vendor, oldprice, price, prettyUrl)
         )
-
         query = """INSERT INTO products(id, category_id, name, description, url, vendor, oldprice, price, pretty_url)
         values(%s, %s, %s, %s, %s, %s, %s, %s, %s)
         """
