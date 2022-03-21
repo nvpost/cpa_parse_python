@@ -1,1 +1,1 @@
-db_name = 'tourist'
+db_name = 'Velosklad'
