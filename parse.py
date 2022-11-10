@@ -19,8 +19,8 @@ root_node = ET.parse('xml.xml').getroot()
 cursor = db.cursor()
 
 # getCategory.get_gategory(root_node, db)
-getProducts.get_products(root_node, db)
+# getProducts.get_products(root_node, db)
 # getParams.get_params(root_node, db)
 
-# getImg.get_img(root_node, db)
+getImg.get_img(root_node, db)
 

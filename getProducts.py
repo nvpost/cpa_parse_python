@@ -18,7 +18,11 @@ def get_products(root_node, db):
 
         price = offer.find('price').text
         url = offer.find('url').text
-        vendor = offer.find('vendor').text
+        vendor = ""
+        try:
+            vendor = offer.find('vendor').text
+        except:
+            pass
             # if offer.find('vendor') else " "
         picturesNodes = offer.findall('picture') if offer.findall('picture') else " "
 

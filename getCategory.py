@@ -16,8 +16,8 @@ def get_gategory(root_node, db):
         categoryInsertArr.append((id, parentId, text, prettyUrl))
 
     print(categoryInsertArr)
-
-    query = """INSERT INTO category(id, parent_id, name, pretty_url)
+ # category = name
+    query = """INSERT INTO category(id, parent_id, category, pretty_url)
     values(%s, %s, %s, %s)
     """
     cursor.executemany(query,categoryInsertArr)

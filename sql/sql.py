@@ -1,1 +1,1 @@
-db_name = 'Velosklad'
+db_name = 'noz0210'

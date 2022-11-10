@@ -13,19 +13,25 @@ def get_img(root_node, db):
     except:
         print("Папка img существует")
 
-    for offer in root_node.findall('shop/offers/offer'):
+        img_node = root_node.findall('shop/offers/offer')
+
+    # for offer in root_node.findall('shop/offers/offer'):
+    #Если не можем все забрать за раз
+    last_count = 5680
+    for i in range(last_count, len(img_node)):
+        offer = img_node[i]
         product_id = offer.attrib['id']
         product_name = offer.find('name').text
         picturesNodes = offer.findall('picture') if offer.findall('picture') else " "
         pictures = list(map(lambda p: p.text, picturesNodes))
 
         resize_img(pictures, product_id, product_name, db)
-        i = i + 1
+        # i = i + 1
         print(i)
         # if i == 5:
         #     break
 
-needle_max_side = 800
+needle_max_side = 600
 def resize_img(pictures, product_id, product_name, db):
     n = 0
     for url in pictures:
